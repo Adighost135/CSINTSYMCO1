@@ -8,6 +8,9 @@ def ucs(thing, start, goal):
 
     while not q.empty():
         cost, node = q.get()
+        print("Current Node:", node)
+        print("Frontier:", list(q.queue))  # Print the queue
+
         if node == goal:
             break
 
@@ -21,8 +24,10 @@ def ucs(thing, start, goal):
                 q.put((total_cost, i))
                 path[i] = node
 
+        print("Visited:", visited)  # Print the visited nodes
+
     if goal not in visited:
-        return None, None
+        return None, None, list(q.queue), visited
     
     shortest_path = []
     nodeRN = goal
@@ -32,10 +37,10 @@ def ucs(thing, start, goal):
     shortest_path.append(start)
     shortest_path.reverse()
 
-    return visited[goal], shortest_path
+    return visited[goal], shortest_path, list(q.queue), visited
 
 def printPath(thing, start, goal):
-    cost, path = ucs(thing, start, goal)
+    cost, path, queue, visited = ucs(thing, start, goal)
     if cost is not None:
         print("Cost:", cost)
         print("Path:", ' -> '.join(path))
@@ -53,4 +58,3 @@ thing = {
 }
 
 printPath(thing, 'Boston', 'Los Angeles')
-
