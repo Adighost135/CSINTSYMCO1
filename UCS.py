@@ -1,4 +1,5 @@
 import queue as Q
+import time
 
 def ucs(thing, start, goal):
     visited = {start: 0} 
@@ -8,8 +9,9 @@ def ucs(thing, start, goal):
 
     while not q.empty():
         cost, node = q.get()
-        print("Current Node:", node)
-        print("Frontier:", list(q.queue))  # Print the queue
+        print("Exploring node:", node)
+        print("Frontier nodes:", list(q.queue))
+        print("Visited nodes:", list(visited.keys()))
 
         if node == goal:
             break
@@ -42,19 +44,34 @@ def ucs(thing, start, goal):
 def printPath(thing, start, goal):
     cost, path, queue, visited = ucs(thing, start, goal)
     if cost is not None:
-        print("Cost:", cost)
         print("Path:", ' -> '.join(path))
+        print("Cost:", cost)
     else:
         print("No path found.")
 
 thing = {
     'Chicago': {'New York': 800, 'San Francisco': 2200},
     'Miami': {'New York': 1000, 'Dallas':1200},
-    'New York': {'Chicago': 800, 'Miami': 1000, 'Boston': 250, 'Los Angeles': 3000},
+    'New York': {'Chicago': 800, 'Miami': 1000, 'Boston': 250, 'Los Angeles': 3000, 'Dallas': 1500},
     'Boston': {'New York': 250},
     'Dallas': {'New York': 1500, 'Miami': 1200, 'Los Angeles': 1700},
     'San Francisco': {'Los Angeles': 500, 'Chicago': 2200},
     'Los Angeles': {'Dallas': 1700, 'New York': 3000, 'San Francisco': 500}
 }
 
-printPath(thing, 'Boston', 'Los Angeles')
+
+while True:
+    start = input("Enter the start node (enter 0 to exit): ")
+    if start == '0':
+        break
+    end = input("Enter the end node: ")
+
+    if start not in thing or end not in thing:
+        print("Invalid start or end node.")
+        continue
+    start_time = time.time()
+    printPath(thing, start, end)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print("Algorithm execution time:", execution_time)
+
