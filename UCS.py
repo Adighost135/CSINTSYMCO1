@@ -26,7 +26,7 @@ def ucs(thing, start, goal):
                 q.put((total_cost, i))
                 path[i] = node
 
-        print("Visited:", visited)  # Print the visited nodes
+        print("Visited:", visited)  
 
     if goal not in visited:
         return None, None, list(q.queue), visited
