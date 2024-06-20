@@ -28,6 +28,8 @@ def ucs(thing, start, goal):
 
         print("Visited:", visited)  
 
+        print("Visited:", visited)  # Print the visited nodes
+
     if goal not in visited:
         return None, None, list(q.queue), visited
     

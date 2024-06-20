@@ -1,17 +1,10 @@
+import java.util.HashMap;
+
 public class Node{
-	private String name;
-	private int heuristic;
-
-	public Node(name, heuristic){
-		this.name = name;
+	public int heuristic;
+	public HashMap<String, Integer> neighbors;
+	public Node(int heuristic, HashMap<String, Integer> neighbors){
 		this.heuristic = heuristic;
-	}
-
-	public String getName(){
-		return this.name;
-	}
-
-	public float getHeuristic(){
-		return this.heuristic;
+		this.neighbors = neighbors;
 	}
 }
