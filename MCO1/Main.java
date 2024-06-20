@@ -1,14 +1,13 @@
-import java.util.PriorityQueue;
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Main{
 
 	public static void main(String[] args){
-		HashMap<String, VisitedNode> visitedList = new HashMap<String, VisitedNode>();
-		HashMap<String, Node> neighborhoodMap = new HashMap<String, Node>();
+		HashMap<String, VisitedNode> visitedList = new HashMap<>();
+		HashMap<String, Node> neighborhoodMap = new HashMap<>();
 		Comparator<State> totalCostComparator = Comparator.comparing(State::getTotalCost);
 		PriorityQueue<State> frontierQueue = new PriorityQueue<>(totalCostComparator);
 		String goal = "Chicago";
