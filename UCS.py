@@ -73,5 +73,5 @@ while True:
     printPath(thing, start, end)
     end_time = time.time()
     execution_time = end_time - start_time
-    print("Algorithm execution time:", execution_time)
+    print("Time:", execution_time)
 
