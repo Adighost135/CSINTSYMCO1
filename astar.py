@@ -35,7 +35,7 @@ def get_user_heuristics(cities):
     return heuristics
 
 def heuristic(city1, city2):
-    return min(user_heuristics.get(city1, 0), user_heuristics.get(city2, 0))
+    return min(user_heuristics.get(city1), user_heuristics.get(city2))
 
 graph = {
     'Chicago': {'New York': 800, 'San Francisco': 2200},
