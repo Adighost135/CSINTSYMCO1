@@ -33,6 +33,10 @@ def get_user_heuristics(cities):
         heuristics[city] = heuristic
     return heuristics
 
+def heuristic(city1, city2):
+    return min(user_heuristics.get(city1, 0), user_heuristics.get(city2, 0))
+
+
 graph = {
     'Chicago': {'New York': 800, 'San Francisco': 2200},
     'Miami': {'New York': 1000, 'Dallas':1200},
@@ -44,9 +48,6 @@ graph = {
 }
 cities = graph.keys()
 user_heuristics = get_user_heuristics(cities)
-
-def heuristic(city1, city2):
-    return min(user_heuristics.get(city1, 0), user_heuristics.get(city2, 0))
 
 start = input("Enter the starting city: ")
 while start not in graph:
