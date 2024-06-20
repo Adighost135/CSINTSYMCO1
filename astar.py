@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+import time
 
 def astar(graph, start, goal, heuristic):
     queue = PriorityQueue()
@@ -10,12 +11,12 @@ def astar(graph, start, goal, heuristic):
         (dist, current) = queue.get()
         if current == goal:
             path = []
-            cost = distances[current]  # Calculate the cost
+            cost = distances[current]  
             while current is not None:
                 path.append(current)
                 current = previous_nodes[current]
             path.reverse()
-            return path, cost  # Return the path and cost
+            return path, cost  
         for neighbour, distance in graph[current].items():
             old_distance = distances.get(neighbour, float('inf'))
             new_distance = distances[current] + distance
@@ -24,7 +25,7 @@ def astar(graph, start, goal, heuristic):
                 priority = new_distance + heuristic(neighbour, goal)
                 queue.put((priority, neighbour))
                 previous_nodes[neighbour] = current
-    return [], None  # Return empty path and None for cost if no path is found
+    return [], None  
 
 def get_user_heuristics(cities):
     heuristics = {}
@@ -35,7 +36,6 @@ def get_user_heuristics(cities):
 
 def heuristic(city1, city2):
     return min(user_heuristics.get(city1, 0), user_heuristics.get(city2, 0))
-
 
 graph = {
     'Chicago': {'New York': 800, 'San Francisco': 2200},
@@ -68,7 +68,8 @@ def printPath(path, cost):
     else:
         print("No path found.")
 
-
+start_time = time.time()
 printPath(path, cost)
-print(user_heuristics)
-print(user_heuristics.get("Chicago", 0))
+end_time = time.time()
+execution_time = end_time - start_time
+print("Time:", execution_time)
